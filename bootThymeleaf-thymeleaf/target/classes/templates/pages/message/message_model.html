@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Contet-Type" content="text/html;charset=UTF-8"/>
+<title>SpringBoot模板渲染</title>
+<!-- 还掉当前显示的log -->
+<script type="text/javascript" th:src="@{/js/message/message_model.js}"></script>
+<img src="/images/03.png" style="height:100px;"/>
+<link rel="icon" type="image/x-icon" th:href="@{/images/mldn.ico}"/>
+
+
+</head>
+<body>
+	<p th:text="'title 信息=='+ ${title}"></p>
+	<p th:text="'request 信息=='+ ${msg}"></p>
+</body>
+</html>

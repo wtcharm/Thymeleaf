@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Contet-Type" content="text/html;charset=UTF-8"/>
+<title>SpringBoot模板渲染</title>
+<!-- 换掉当前显示的log -->
+<link rel="icon" type="image/x-icon" th:href="@{/images/mldn.ico}"/>
+</head>
+<body>
+
+	<div th:object="${member}">
+	<p th:text="'用户编号： ' + *{mid}"/>
+	<p th:text="'用户姓名：' + *{name}"/>
+	<p th:text="'用户年龄：' + *{age}"/>
+	<p th:text="'用户工资：' + *{salary}"/>
+	<p th:text="'部门编号：' + *{deptno}"/>
+	<p th:text="'出生日期：' + *{#dates.format(birthday,'yyyy-MM-dd')}"/>
+	</div>
+	
+	<hr color="red"/>
+	<p>集合处理操作</p>
+	<hr color="red" />
+	<p th:text="${#maps.containsKey(allDepts,10L)}"/>
+	<p th:text="${allDepts[10L]}"/>
+	<hr color="red" />
+	
+	<div th:object="${member}">
+		<span th:text="'姓名：' + *{name}"/><br/>
+		<span th:text="'部门：' + ${allDepts[member.deptno]}"/>
+	
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

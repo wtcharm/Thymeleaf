@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Contet-Type" content="text/html;charset=UTF-8" />
+<title>SpringBoot模板渲染</title>
+<script type="text/javascript" th:src="@{jquery/jquery.min.js}"></script>
+<link type="text/css" rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}" />
+<!-- 换掉当前显示的log -->
+<link rel="icon" type="image/x-icon" th:href="@{/images/mldn.ico}" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+	<table style="width:80%" border="1">
+		<tr>
+			<td>No.</td>
+			<td>用户编号</td>
+			<td>用户姓名</td>
+			<td>用户年龄</td>
+			<td>用户工资</td>
+			<td>部门编号</td>
+			<td>出生日期</td>
+			<td>even</td>
+			<td>odd</td>
+		</tr>
+		<tr th:each="member,memberStat:${allMember}" th:class="${memberStat.even ? 'text-danger':'text-success'}">
+			<div th:object="${member}">
+				<td th:text="${memberStat.index+1}"/>
+				<td th:text="*{mid}" />
+				<td th:text="*{name}" />
+				<td th:text="*{age}" />
+				<td th:text="*{salary}" />
+				<td th:text="*{deptno}" />
+				<td th:text="*{#dates.format(birthday,'yyyy-MM-dd')}" />
+				<td th:text="${memberStat.even}"/>
+				<td th:text="${memberStat.odd}"/>
+			</div>
+		</tr>
+	</table>
+	<hr color="red" size="5"/>
+		<p>包含   ---- th:replace</p>
+	<hr color="red"  size="5"/>
+	<div th:replace="@{/plugins/footer} :: comanyInfo"/>
+		<hr color="red" size="5"/>
+		<p>包含   ---- th:include</p>
+	<hr color="red"  size="5"/>
+	<div th:include="@{/plugins/footer} :: comanyInfo" th:with="iid=2,sid=21"/>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

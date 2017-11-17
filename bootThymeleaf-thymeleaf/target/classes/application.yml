@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:    
+    prefix: classpath:/templates/pages/   #定义要访问路径的前缀
+
+server:
+  port: 80                                #定义服务端口
+  

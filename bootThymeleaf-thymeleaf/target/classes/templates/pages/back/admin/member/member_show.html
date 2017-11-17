@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Contet-Type" content="text/html;charset=UTF-8"/>
+<title>SpringBoot模板渲染</title>
+<!-- 换掉当前显示的log -->
+<link rel="icon" type="image/x-icon" th:href="@{/images/mldn.ico}"/>
+</head>
+<body>
+	<p th:text="'用户编号： ' + ${member.mid}"/>
+	<p th:text="'用户姓名：' + ${member.name}"/>
+	<p th:text="'用户年龄：' + ${member.age}"/>
+	<p th:text="'用户工资：' + ${member.salary}"/>
+	<p th:text="'部门编号：' + ${member.deptno}"/>
+	<p th:text="'出生日期：' + ${member.birthday}"/>
+	<p th:text="'出生日期：' + *{#dates.format(member.birthday,'yyyy-MM-dd')}"/>
+	
+	<hr color="red"/>
+	<p>第二中写法</p>
+	<hr color="red" />
+	
+	<div th:object="${member}">
+	<p th:text="'用户编号： ' + *{mid}"/>
+	<p th:text="'用户姓名：' + *{name}"/>
+	<p th:text="'用户年龄：' + *{age}"/>
+	<p th:text="'用户工资：' + *{salary}"/>
+	<p th:text="'部门编号：' + *{deptno}"/>
+	<p th:text="'出生日期：' + *{#dates.format(birthday,'yyyy-MM-dd')}"/>
+	</div>
+	
+	<hr color="red"/>
+	<p>进行逻辑处理操作 列如：and,or、关系比较（大于，小于，等于，大于等于，小于等于，不等于）</p>
+	<hr color="red" />
+	<div th:object="${member}">
+		<span th:if="*{age ge 18}"> <!-- 表示大于 -->
+			<span th:text="*{name} + '是一个成年人。'"></span>
+		</span>
+			<span th:if="*{age lt 18}"> <!-- 表示小于 -->
+			<span th:text="*{name} + '是一个未成年人。'"></span>
+		</span>
+	</div>
+	
+	<hr color="red"/>
+	<p>进行逻辑处理操作 列如：and,or、关系比较（大于，小于，等于，大于等于，小于等于，不等于）</p>
+	<hr color="red" />
+	
+	<div th:object="${member}">
+		<span th:if="*{age ge 18}"><!-- 表示大于 -->
+			<span th:text="*{name} + '是一个成年人。'"></span>
+		</span>
+			<span th:unless="*{age ge 18}"><!-- 取反 -->
+			<span th:text="*{name} + '是一个未成年人。'"></span>
+		</span>
+	</div>
+	<hr color="red"/>
+	<p>进行逻辑处理操作  --- 判读相等 </p>
+	<hr color="red" />
+	
+	<div th:objcte="${member}">
+		<span th:if="*{name == '海陆'}">
+			是一只不错的小耗子！！
+		</span>
+	</div>
+	
+	<hr color="red"/>
+	<p>进行逻辑处理操作  --- 使用 Swtich 进行判断 </p>
+	<hr color="red" />
+	
+	<div th:object="${member}">
+		<span th:switch="*{deptno}">
+			<span th:case="10" th:text="*{name} + '为10部门员工！'"/>
+			<span th:case="20" th:text="*{name} + '为20部门员工！'"/>
+			<span th:case="*" th:text="*{name} + '为其他部门员工！'"/>
+		</span>
+	</div>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
